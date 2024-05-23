@@ -24,7 +24,7 @@ class Target_Follower:
     def tag_callback(self, msg):
         self.move_robot(msg.detections)
  
-    # Stop Robot before node has shut down. This ensures the robot doesn't keep moving with the latest velocity command
+    # Stop Robot before node has shut down
     def clean_shutdown(self):
         rospy.loginfo("System shutting down. Stopping robot...")
         self.stop_robot()
@@ -62,7 +62,7 @@ class Target_Follower:
 
             # Proportional control for angular velocity
             cmd_msg.v = 0.0
-            cmd_msg.omega = -0.5 * x # Adjust this factor as needed
+            cmd_msg.omega = -0.5 * x 
             rospy.loginfo("Adjusting orientation to center tag with omega: %f", cmd_msg.omega)
 
         self.cmd_vel_pub.publish(cmd_msg)
