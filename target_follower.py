@@ -62,7 +62,8 @@ class Target_Follower:
 
             # Proportional control for angular velocity
             cmd_msg.v = 0.0
-            cmd_msg.omega = -0.5 * x 
+            gain = 2.0  # Increase this value if the robot's response is too slow
+            cmd_msg.omega = -gain * x 
             rospy.loginfo("Adjusting orientation to center tag with omega: %f", cmd_msg.omega)
 
         self.cmd_vel_pub.publish(cmd_msg)
